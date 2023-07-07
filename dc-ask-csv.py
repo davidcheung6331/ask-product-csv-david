@@ -34,10 +34,6 @@ st.image(image, caption='created by MJ')
 st.title("🗂 :blue[Ask your CSV file]")
 
 with st.sidebar:    
-    # Set API keys
-    system_openai_api_key = os.environ.get('OPENAI_API_KEY')
-    system_openai_api_key = st.text_input(":key: OpenAI Key :", value=system_openai_api_key)
-    os.environ["OPENAI_API_KEY"] = system_openai_api_key
     
     st.text("Sample CSV file: ")
     image = Image.open("record.png")
@@ -53,6 +49,10 @@ def load_data():
 
 
 
+# Set API keys
+system_openai_api_key = os.environ.get('OPENAI_API_KEY')
+system_openai_api_key = st.text_input(":key: OpenAI Key :", value=system_openai_api_key)
+os.environ["OPENAI_API_KEY"] = system_openai_api_key
 
 agent = create_csv_agent(OpenAI(openai_api_key=system_openai_api_key,temperature=0), 
                          filename, 
