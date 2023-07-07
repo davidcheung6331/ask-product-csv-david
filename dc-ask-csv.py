@@ -66,8 +66,8 @@ Qstr7 = ""
 
 with st.expander("CSV file Content"):
     df = pd.read_csv(filename)        
-    # st.write(df.head(5))
-    st.write(df)
+    st.write(df.head(5))
+    # st.write(df)
 
 finalQuery = "Select Query Type"
 queryselection =st.radio ("Sample Query : ",
