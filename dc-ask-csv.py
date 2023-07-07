@@ -52,7 +52,7 @@ def load_data():
 # Set API keys
 system_openai_api_key = os.environ.get('OPENAI_API_KEY')
 system_openai_api_key = st.text_input(":key: OpenAI Key :", value=system_openai_api_key)
-system_openai_api_key = "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"
+# system_openai_api_key = "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"
 
 # st.caption("Please input the API KEY:")
 # QueryString = st.text_input('Sample Prompt ie : ', QueryString)
@@ -107,9 +107,9 @@ if queryselection == Qstr5:
 
 st.info(finalQuery, icon="ℹ️")
 
-# if st.button("Query"):
-#     finalResponse = agent.run(finalQuery)
-#     st.info(finalResponse, icon="ℹ️")
+if st.button("Query"):
+    finalResponse = agent.run(finalQuery)
+    st.info(finalResponse, icon="ℹ️")
     # subprocess.call(["say", finalResponse])
 
 
