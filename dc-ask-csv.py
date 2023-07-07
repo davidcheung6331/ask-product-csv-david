@@ -2,9 +2,12 @@ import streamlit as st
 from langchain.agents import create_csv_agent
 from langchain.llms import OpenAI
 import pandas as pd
+import streamlit_pandas as sp
 import os
 from PIL import Image
 # import subprocess
+
+
 
 st.set_page_config(
     page_title="Ask your CSV",
@@ -35,14 +38,22 @@ with st.sidebar:
     system_openai_api_key = os.environ.get('OPENAI_API_KEY')
     system_openai_api_key = st.text_input(":key: OpenAI Key :", value=system_openai_api_key)
     os.environ["OPENAI_API_KEY"] = system_openai_api_key
-    st.divider()  
+    
     st.text("Sample CSV file: ")
     image = Image.open("record.png")
     st.image(image, caption='Sample purchase-orders.csv')
 
-    
 
 filename = "purchase-orders.csv"
+
+@st.cache_data
+def load_data():
+    df = pd.read_csv(filename)
+    return df
+
+
+
+
 agent = create_csv_agent(OpenAI(openai_api_key=system_openai_api_key,temperature=0), 
                          filename, 
                          verbose=True)
@@ -64,10 +75,10 @@ Qstr5 = "Customer Purchase Record by Gender, City and Product ?"
 Qstr6 = "Count of Product Category Purchase by Female with age between 0-17 ?"
 Qstr7 = ""
 
-# with st.expander("CSV file Content"):
-#    df = pd.read_csv(filename)        
-#    st.write(df.head(5))
-    # st.write(df)
+with st.expander("CSV file Content"):
+    df = load_data()
+    st.write(df)
+
 
 finalQuery = "Select Query Type"
 queryselection =st.radio ("Sample Query : ",
