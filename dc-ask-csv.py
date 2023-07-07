@@ -64,9 +64,9 @@ Qstr5 = "Customer Purchase Record by Gender, City and Product ?"
 Qstr6 = "Count of Product Category Purchase by Female with age between 0-17 ?"
 Qstr7 = ""
 
-with st.expander("CSV file Content"):
-    df = pd.read_csv(filename)        
-    st.write(df.head(5))
+# with st.expander("CSV file Content"):
+#    df = pd.read_csv(filename)        
+#    st.write(df.head(5))
     # st.write(df)
 
 finalQuery = "Select Query Type"
