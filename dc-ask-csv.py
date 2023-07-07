@@ -54,9 +54,9 @@ def load_data():
 
 
 
-# agent = create_csv_agent(OpenAI(openai_api_key=system_openai_api_key,temperature=0), 
-#                          filename, 
-#                          verbose=True)
+agent = create_csv_agent(OpenAI(openai_api_key=system_openai_api_key,temperature=0), 
+                         filename, 
+                          verbose=True)
 
 
 
