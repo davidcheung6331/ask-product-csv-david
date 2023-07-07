@@ -2,5 +2,6 @@ streamlit
 langchain
 openai
 pandas
+tabulate
 streamlit-pandas
 
