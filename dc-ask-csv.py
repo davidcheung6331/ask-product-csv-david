@@ -55,7 +55,7 @@ system_openai_api_key = st.text_input(":key: OpenAI Key :", value=system_openai_
 system_openai_api_key = "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"
 
 # st.caption("Please input the API KEY:")
-QueryString = st.text_input('Sample Prompt ie : ', QueryString)
+# QueryString = st.text_input('Sample Prompt ie : ', QueryString)
 agent = create_csv_agent(OpenAI(openai_api_key=system_openai_api_key,temperature=0), 
                          filename, 
                           verbose=True)
