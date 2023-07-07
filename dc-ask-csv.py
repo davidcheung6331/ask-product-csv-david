@@ -54,9 +54,9 @@ def load_data():
 
 
 
-agent = create_csv_agent(OpenAI(openai_api_key=system_openai_api_key,temperature=0), 
-                         'purchase-orders.csv', 
-                         verbose=True)
+# agent = create_csv_agent(OpenAI(openai_api_key=system_openai_api_key,temperature=0), 
+#                          filename, 
+#                          verbose=True)
 
 
 
@@ -105,9 +105,9 @@ if queryselection == Qstr5:
 
 st.info(finalQuery, icon="ℹ️")
 
-if st.button("Query"):
-    finalResponse = agent.run(finalQuery)
-    st.info(finalResponse, icon="ℹ️")
+# if st.button("Query"):
+#     finalResponse = agent.run(finalQuery)
+#     st.info(finalResponse, icon="ℹ️")
     # subprocess.call(["say", finalResponse])
 
 
