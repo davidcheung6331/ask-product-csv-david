@@ -2,7 +2,7 @@ import streamlit as st
 from langchain.agents import create_csv_agent
 from langchain.llms import OpenAI
 import pandas as pd
-import streamlit_pandas as sp
+# import streamlit_pandas as sp
 import os
 from PIL import Image
 # import subprocess
@@ -14,11 +14,6 @@ st.set_page_config(
     page_icon="🗂",
     layout="wide",
     initial_sidebar_state="expanded",
-    menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "Demo Page by AdCreativeDEv"
-    }
 )
 
 hide_menu_style = """
@@ -28,16 +23,11 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-image = Image.open("excel.png")
+image = Image.open("cs-banner.jpg")
 st.image(image, caption='created by MJ')
 
-st.title("🗂 :blue[Ask your CSV file]")
 
-with st.sidebar:    
-    
-    st.text("Sample CSV file: ")
-    image = Image.open("record.png")
-    st.image(image, caption='Sample purchase-orders.csv')
+st.title("📝 :blue[Summarize  Purchase Order]")
 
 
 filename = "purchase-orders.csv"
@@ -77,11 +67,11 @@ Qstr5 = "Customer Purchase Record by Gender, City and Product ?"
 Qstr6 = "Count of Product Category Purchase by Female with age between 0-17 ?"
 Qstr7 = ""
 
-with st.expander("CSV file Content"):
+with st.expander("purchase-orders.csv file Content"):
     df = load_data()
     st.write(df)
 
-
+st.subheader('Step 1 - Select the Query:')
 finalQuery = "Select Query Type"
 queryselection =st.radio ("Sample Query : ",
                         (Qstr1, Qstr2, Qstr3, Qstr4, Qstr5))
@@ -105,11 +95,15 @@ if queryselection == Qstr5:
     finalQuery = query5
 
 
-st.info(finalQuery, icon="ℹ️")
 
-if st.button("Query"):
-    finalResponse = agent.run(finalQuery)
-    st.info(finalResponse, icon="ℹ️")
+
+st.subheader('Step 2 - Execute following Query:')
+st.info(finalQuery)
+if st.button("Query", type='primary'):
+    with st.spinner('Generating ...'):
+        finalResponse = agent.run(finalQuery)
+        st.subheader('Result:')
+        st.info(finalResponse, icon="ℹ️")
     # subprocess.call(["say", finalResponse])
 
 
@@ -230,4 +224,3 @@ Final Answer: 18596 females have stayed more than 3 years.
 """
 with st.expander("explanation"):
     st.code(log)
-
